@@ -22,11 +22,6 @@ def test_dark_theme():
     assert is_dark_theme is True
 
 
-
-
-
-
-
 def test_find_suitable_user():
     """
     Найдите нужного пользователя по условиям в списке пользователей
@@ -38,34 +33,33 @@ def test_find_suitable_user():
         {"name": "Olga", "age": 45},
         {"name": "Maria", "age": 18},
     ]
+
+
     # TODO найдите пользователя с именем "Olga"
     suiable_user = None
-
-    for i in users:
-        for key in i.keys():
-            if key == "Olga":
-                suiable_user = i
-
+    for user in users:
+        if user['name'] == "Olga":
+            suiable_user = user
     assert suiable_user == {"name": "Olga", "age": 45}
 
 
-'''    
-    for user in users:
-        if "name" == "Olga":
-            suiable_user = user
-'''
-
-
-'''
-
     # TODO найдите всех пользователей младше 20 лет
     suiable_users = None
+    new_list = []
+    for user in users:
+        if user['age'] < 20:
+            new_list.append(user)
+    suiable_users = new_list
 
     assert suiable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
     ]
-'''
+
+
+
+
+
 # Сделайте функцию, которая будет печатать
 # читаемое имя переданной ей функции и значений аргументов.
 # Вызовите ее внутри функций, описанных ниже
@@ -92,3 +86,4 @@ def go_to_companyname_homepage(page_url):
 def find_registration_button_on_login_page(page_url, button_text):
     actual_result = None
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+
