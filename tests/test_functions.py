@@ -1,5 +1,6 @@
 from datetime import time
 
+
 def test_dark_theme():
     """
     Протестируйте правильность переключения темной темы на сайте
@@ -34,14 +35,12 @@ def test_find_suitable_user():
         {"name": "Maria", "age": 18},
     ]
 
-
     # TODO найдите пользователя с именем "Olga"
     suiable_user = None
     for user in users:
         if user['name'] == "Olga":
             suiable_user = user
     assert suiable_user == {"name": "Olga", "age": 45}
-
 
     # TODO найдите всех пользователей младше 20 лет
     suiable_users = None
@@ -57,9 +56,6 @@ def test_find_suitable_user():
     ]
 
 
-
-
-
 # Сделайте функцию, которая будет печатать
 # читаемое имя переданной ей функции и значений аргументов.
 # Вызовите ее внутри функций, описанных ниже
@@ -70,20 +66,28 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
+
+def name_and_args(funk_name, **kwargs, ):
+    return f'''{funk_name.__name__.replace('_', ' ').title()} [{', '.join(kwargs.values())}]'''
+
+
+
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
+
 def open_browser(browser_name):
-    actual_result = None
+    actual_result = name_and_args(open_browser, browser=browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
+
 def go_to_companyname_homepage(page_url):
-    actual_result = None
+    actual_result = name_and_args(go_to_companyname_homepage, page_url="https://companyname.com")
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
-def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
-    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
 
+def find_registration_button_on_login_page(page_url, button_text):
+    actual_result = name_and_args(find_registration_button_on_login_page, page_url="https://companyname.com/login", button_text="Register")
+    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
