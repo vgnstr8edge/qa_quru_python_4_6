@@ -7,7 +7,7 @@ def test_dark_theme():
     """
     current_time = time(hour=23)
     is_dark_theme = None
-    if current_time <= time(22) or current_time >= time(6):
+    if current_time >= time(22) or current_time <= time(6):
         is_dark_theme = True
     else:
         None
@@ -17,7 +17,7 @@ def test_dark_theme():
     current_time = time(hour=16)
     dark_theme_enabled = True
     is_dark_theme = None
-    if (current_time <= time(22) or current_time >= time(6)) or dark_theme_enabled is True:
+    if (current_time >= time(22) or current_time <= time(6)) or dark_theme_enabled is True:
         is_dark_theme = True
     else:
         None
