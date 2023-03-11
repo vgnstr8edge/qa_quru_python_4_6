@@ -7,16 +7,17 @@ def test_dark_theme():
     """
     current_time = time(hour=23)
     is_dark_theme = None
-    if current_time.hour in (22, 23, 24, 0, 1, 2, 3, 4, 5, 6):
+    if current_time <= time(22) or current_time >= time(6):
         is_dark_theme = True
     else:
         None
     assert is_dark_theme is True
 
+
     current_time = time(hour=16)
     dark_theme_enabled = True
     is_dark_theme = None
-    if current_time.hour in (22, 23, 24, 0, 1, 2, 3, 4, 5, 6) or dark_theme_enabled == True:
+    if (current_time <= time(22) or current_time >= time(6)) or dark_theme_enabled is True:
         is_dark_theme = True
     else:
         None
@@ -71,7 +72,6 @@ def name_and_args(funk_name, **kwargs, ):
     return f'''{funk_name.__name__.replace('_', ' ').title()} [{', '.join(kwargs.values())}]'''
 
 
-
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
@@ -89,5 +89,6 @@ def go_to_companyname_homepage(page_url):
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = name_and_args(find_registration_button_on_login_page, page_url="https://companyname.com/login", button_text="Register")
+    actual_result = name_and_args(find_registration_button_on_login_page, page_url="https://companyname.com/login",
+                                  button_text="Register")
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
